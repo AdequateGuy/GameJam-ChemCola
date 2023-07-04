@@ -16,12 +16,13 @@ public class GroundCheck : MonoBehaviour
     const float OriginOffset = .001f;
     Vector3 RaycastOrigin => transform.position + Vector3.up * OriginOffset;
     float RaycastDistance => distanceThreshold + OriginOffset;
+    public bool isGroundedNow;
 
 
     void LateUpdate()
     {
         // Check if we are grounded now.
-        bool isGroundedNow = Physics.Raycast(RaycastOrigin, Vector3.down, distanceThreshold * 2);
+        isGroundedNow = Physics.Raycast(RaycastOrigin, Vector3.down, distanceThreshold * 2);
 
         // Call event if we were in the air and we are now touching the ground.
         if (isGroundedNow && !isGrounded)
