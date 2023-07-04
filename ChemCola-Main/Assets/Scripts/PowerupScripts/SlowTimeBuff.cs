@@ -19,7 +19,6 @@ public class SlowTimeBuff : MonoBehaviour
     private GameObject artToDisable = null;
     private Collider _collider;
     private bool isActive = false;
-    private float run = 10000000f;
 
     private void Awake()
     {
