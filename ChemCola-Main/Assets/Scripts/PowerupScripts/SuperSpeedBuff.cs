@@ -40,7 +40,8 @@ public class SuperSpeedBuff : MonoBehaviour
         yield return new WaitForSeconds(powerupDuration);
         //deactivate powerup
         DeactivatePowerup(firstPersonMovement);
-        Destroy(gameObject);
+        _collider.enabled = true;
+        artToDisable.SetActive(true);
     }
 
     private void ActivatePowerup(FirstPersonMovement firstPersonMovement)

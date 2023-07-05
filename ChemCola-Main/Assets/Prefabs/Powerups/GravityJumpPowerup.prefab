@@ -142,10 +142,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab796dc708b47d34fa2774c937bb66d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gravity: 1
+  Gravity: 0.5
   powerupDuration: 20
   artToDisable: {fileID: 5663264232969988365}
-  jumpMass: 1
+  jumpMass: 0.8
   regularMass: 2
   jumpDrag: 0.8
   regularDrag: 0.4

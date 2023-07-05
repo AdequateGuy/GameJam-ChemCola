@@ -59,7 +59,8 @@ public class GravityJumpBuff : MonoBehaviour
         {
             ApplyGravity(jumpRigidbody, this.regularMass, this.regularDrag);
         }
-        Destroy(gameObject);
+        _collider.enabled = true;
+        artToDisable.SetActive(true);
     }
 
     private void ActivatePowerup(Jump jump)

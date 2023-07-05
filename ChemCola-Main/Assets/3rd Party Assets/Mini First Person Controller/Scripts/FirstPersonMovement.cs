@@ -18,7 +18,7 @@ public class FirstPersonMovement : MonoBehaviour
     public float airSpeed;
     public KeyCode runningKey = KeyCode.LeftShift;
 
-    private Rigidbody rb;
+    public Rigidbody rb;
 
     public float walkDeaccelerationVolX;
     public float walkDeaccelerationVolZ;
@@ -48,10 +48,10 @@ public class FirstPersonMovement : MonoBehaviour
             targetMovingSpeed = speedOverrides[speedOverrides.Count - 1]();
         }
 
-        if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D) && groundCheck.isGroundedNow && !groundCheck.isGrounded)
+        /*if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D) & groundCheck.isGroundedNow && !groundCheck.isGrounded)
         {
-            rb.velocity = new Vector3(Mathf.SmoothDamp(rb.velocity.x, 1f, ref walkDeaccelerationVolX, 1f), rb.velocity.y, Mathf.SmoothDamp(rb.velocity.z, 1f, ref walkDeaccelerationVolZ, 1f));      
-        }
+            rb.velocity = new Vector3(Mathf.SmoothDamp(rb.velocity.x, 0f, ref walkDeaccelerationVolX, 1f), rb.velocity.y, Mathf.SmoothDamp(rb.velocity.z, 0f, ref walkDeaccelerationVolZ, 1f));      
+        }*/
 
 
         // Get targetVelocity from input.
@@ -63,32 +63,32 @@ public class FirstPersonMovement : MonoBehaviour
         
         if (IsRunning)
         {
-            if (groundCheck.isGrounded & rb.velocity.magnitude < maxVelocity)
+            if ((rb.velocity.x * rb.velocity.x) + (rb.velocity.z * rb.velocity.z) < maxVelocity)
             {
                 rb.AddForce(Vector3.ClampMagnitude(xMovement + yMovement, 1.0f) * targetMovingSpeed, ForceMode.Acceleration);
             }
-            if (!groundCheck.isGrounded)
+            /*if (!groundCheck.isGrounded)
             {
                 rb.AddForce(Vector3.ClampMagnitude(xMovement + yMovement, 1.0f) * airSpeed * airDecrease, ForceMode.Acceleration);
-            }
+            }*/
         }     
         else
         {
-            if (groundCheck.isGrounded & rb.velocity.magnitude < maxWalk)
+            if ((rb.velocity.x * rb.velocity.x) + (rb.velocity.z * rb.velocity.z) < maxWalk)
             {
                 targetVelocity = targetVelocity.normalized * Time.deltaTime * speed;
                 rb.AddRelativeForce(targetVelocity);
             }
-            if (!groundCheck.isGrounded)
+            /*if (!groundCheck.isGrounded)
             {
                 targetVelocity = targetVelocity.normalized * Time.deltaTime * speed * airDecrease;
                 rb.AddRelativeForce(targetVelocity);
-            }                   
+            }   */                
         }
 
         if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.D))
         {
-            rb.velocity = new Vector3(Mathf.SmoothDamp(rb.velocity.x, 0f, ref walkDeaccelerationVolX, 0.1f), rb.velocity.y, Mathf.SmoothDamp(rb.velocity.z, 0f, ref walkDeaccelerationVolZ, 0.1f));
+            rb.velocity = new Vector3(Mathf.SmoothDamp(rb.velocity.x, 0f, ref walkDeaccelerationVolX, 0.05f), rb.velocity.y, Mathf.SmoothDamp(rb.velocity.z, 0f, ref walkDeaccelerationVolZ, 0.05f));
         }
 
 
