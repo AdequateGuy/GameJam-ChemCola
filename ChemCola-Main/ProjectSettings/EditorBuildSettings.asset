@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/3rd Party Assets/_Barking_Dog/3D Free Modular Kit/Scenes/Level Testing.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/Scenes/Menu.unity
+    guid: e9bbedff85fed0f48922d4736346aa23
+  - enabled: 1
+    path: Assets/Scenes/Level Testing.unity
+    guid: 058142b9549858946ae8a8bb7609cd3c
   m_configObjects: {}

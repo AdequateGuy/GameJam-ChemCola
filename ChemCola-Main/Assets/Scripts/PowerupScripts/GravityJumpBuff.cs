@@ -25,6 +25,7 @@ public class GravityJumpBuff : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        GetComponent<AudioSource>().Play();
         Jump jump = other.gameObject.GetComponent<Jump>();
         if (jump != null)
         {

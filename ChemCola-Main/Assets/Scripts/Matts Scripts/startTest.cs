@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class startTest : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class startTest : MonoBehaviour
     public AudioSource audioSource;
     void Start()
     {
-        
+        SceneManager.UnloadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -25,6 +26,9 @@ public class startTest : MonoBehaviour
         //nowplay
         afterEnter = GameObject.Find("Doorway");
         afterEnter.GetComponent<AudioSource>().Play();
+
+        
+
     }
 
 
