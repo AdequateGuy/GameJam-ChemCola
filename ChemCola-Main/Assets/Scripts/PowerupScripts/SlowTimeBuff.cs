@@ -19,7 +19,6 @@ public class SlowTimeBuff : MonoBehaviour
     private GameObject artToDisable = null;
     private Collider _collider;
     private bool isActive = false;
-    private float run = 10000000f;
 
     private void Awake()
     {
@@ -33,8 +32,7 @@ public class SlowTimeBuff : MonoBehaviour
             Debug.Log("Hit");
             startTimeScale = Time.timeScale;
             startFixedDeltaTime = Time.fixedDeltaTime;
-            _collider.enabled = false;
-            artToDisable.SetActive(false);
+            
             //powerup 
             StartCoroutine(SlowMo());
         }
@@ -42,8 +40,9 @@ public class SlowTimeBuff : MonoBehaviour
     }
     public IEnumerator SlowMo()
     {
-        Debug.Log("Dead");
         //soft disable
+        _collider.enabled = false;
+        artToDisable.SetActive(false);
         
 
         //activate
@@ -56,7 +55,8 @@ public class SlowTimeBuff : MonoBehaviour
         //deactivate powerup
         PowerUpDeactivated();
         StopSlowMotion();
-        Destroy(gameObject);       
+        _collider.enabled = true;
+        artToDisable.SetActive(true);
     }
     public bool PowerUpActivated()
     {
@@ -84,12 +84,12 @@ public class SlowTimeBuff : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q) & isActive)
+        if (Input.GetMouseButton(0) & isActive)
         {
             StartSlowMotion();
         }
 
-        if (Input.GetKeyDown(KeyCode.E) & isActive)
+        if (Input.GetMouseButtonUp(0) & isActive)
         {
             StopSlowMotion();
         }
