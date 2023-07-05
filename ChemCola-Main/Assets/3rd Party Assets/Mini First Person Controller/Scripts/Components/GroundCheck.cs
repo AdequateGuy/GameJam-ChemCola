@@ -48,7 +48,7 @@ public class GroundCheck : MonoBehaviour
         Ray leftRay = new Ray(RaycastOrigin, left);
 
         float range = disFromPlat.x;
-        if (Physics.Raycast(backRay,range))
+        if (Physics.Raycast(backRay, range) & Input.GetKey(KeyCode.W))
         {
             edgeForgive = true;
         }
